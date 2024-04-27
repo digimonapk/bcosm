@@ -1,0 +1,2 @@
+document.addEventListener("DOMContentLoaded",function(){if(!(!window.mz||!window.mz.enabled)){var toggleMobileSearch=function(event){var ctrl=$(".mz-sticky-search-mobile input"),className="mz-sticky-open";ctrl.hasClass(className)?ctrl.removeClass(className):ctrl.addClass(className),event.preventDefault()};$(".mz-sticky-search-mobile .site-nav__link").on("click",toggleMobileSearch)}});
+//# sourceMappingURL=/cdn/shop/t/7/assets/mezereon.js.map?v=176463772141652963361683336761

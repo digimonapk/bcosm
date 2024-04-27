@@ -1,0 +1,47 @@
+
+  window.$obvReady = (async ()=>{
+    if (window.obv_loaded) { return; }
+    window.obv_loaded = true;
+    
+window._hc_psz_tag = true;
+  if (typeof $h30 !== 'undefined') {
+    window._h30_analytics = true;
+  } else {
+    window._obv_analytics = true;
+  }
+  
+  
+
+  let altTag = localStorage.getItem('_hc_psz_tag_alt');
+  if (altTag) {
+    import('https://h30-deploy.obviyo.net/origin/personalize/static/test/'+altTag+'/core.js');
+  } else {
+    import('https://h30-deploy.obviyo.net/origin/personalize/static/core.js');
+  }
+
+  window._obv_tag = true;
+  window._obv_hyper = true;
+  let lib;
+  let altHyper = localStorage.getItem('_obv_tag_alt');
+  let base;
+  if (altHyper) {
+    base = (altHyper === 't') ? 'https://cdn.obviyo.net/test/lib/hyper/' : altHyper;
+  } else {
+    base = 'https://cdn.obviyo.net/lib/hyper/';
+  }
+
+  lib = (await import(base + 'obv-components.esm.js'));
+  const obv = lib.default || lib;
+  lib.hcx.loadCss(base +'obv-components.css');
+  window.obviyo = Object.assign({}, window.obviyo, obv);
+  obv.api.initialize({siteId: 'nNKUmnl8'});
+  if (typeof $h30 !== 'undefined') {
+    // wait for 3.0 analytic tags before continuing
+    await $h30;
+  }
+  else {
+    await obv.api.$run();
+  }
+  obv.api.$bootstrap();
+  
+})();
